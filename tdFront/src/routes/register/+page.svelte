@@ -2,7 +2,9 @@
 	import Header from "../../components/Header.svelte";
     import * as api from "../../api.js";
     
-    let errorRegister = false;
+    export let data;
+
+    let errorRegister = data.errorRegister;
     let user = {
         "username": "",
         "password": ""
@@ -25,7 +27,7 @@
             <h2> REGISTER </h2>
             <form class="form" on:submit={registerFunction}>
                 <input type="text" id="username" name="username" placeholder="username" bind:value={user.username} required>
-                <input type="text" id="password" name="password" placeholder="password" bind:value={user.password} required>
+                <input type="password" id="password" name="password" placeholder="password" bind:value={user.password} required>
                 <input type="submit" class="submit" value="REGISTER"/>
             </form>
             {#if errorRegister}
@@ -86,7 +88,7 @@
         background-color: #39ace7;
         cursor: pointer;
     }
-    input[type=text] {
+    input[type=text], input[type=password] {
         background-color: #f6f6f6;
         border: none;
         color: #0d0d0d;
@@ -107,12 +109,12 @@
         border-radius: 5px 5px 5px 5px;
     }
 
-    input[type=text]:focus {
+    input[type=text]:focus, input[type=password]:focus {
         background-color: #fff;
         border-bottom: 2px solid #5fbae9;
     }
 
-    input[type=text]:placeholder {
+    input[type=text]::placeholder, input[type=password]::placeholder {
         color: grey;
     }
     .form {

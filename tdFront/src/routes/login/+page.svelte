@@ -1,21 +1,14 @@
 <script>
 	import Header from "../../components/Header.svelte";
-    import * as api from "../../api.js";
 
-    let errorLogin = false;
+    export let data;
+
+    let errorLogin = data.errorLogin;
     let user = {
         "username": "",
         "password": ""
     };
-    
-    /*const loginFunction = async () => {
-        const response = await api.sendRequest('POST', "http://localhost:3000/users/login", "", user)
-        if (response.jwt == undefined) errorLogin = true;
-        sessionStorage.setItem('token', response.jwt)
-        window.location.href = "/locations"
-    }*/
-
-    
+        
 </script>
 
 <head>
