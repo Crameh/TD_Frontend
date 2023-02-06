@@ -5,11 +5,12 @@
     export let create;
     export let location;
     export let role;
+    export let token;
 
     let pop = false;
     
     const deleteLocation = async () => {
-        return await api.sendRequest('DELETE', `http://localhost:3000/locations/${location._id}`, sessionStorage.getItem("token"))
+        return await api.sendRequest('DELETE', `http://localhost:3000/locations/${location._id}`, token)
         .then(() => window.location.href = "/locations")
     }
     const switchPopup = () => {
@@ -52,7 +53,7 @@
         </div>
     </div>
     {#if pop}
-    <Popup location="{location}" pop="{pop}" add="{create}"></Popup>
+    <Popup location="{location}" pop="{pop}" add="{create}" token="{token}"></Popup>
     {/if}
 </body>
 

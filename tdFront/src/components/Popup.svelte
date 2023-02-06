@@ -4,14 +4,15 @@
     export let location;
     export let pop;
     export let add;
+    export let token;
 
     const editLocation = async(id) =>{
         closePopup();
-        return await api.sendRequest('PATCH', `http://localhost:3000/locations/${location._id}`, sessionStorage.getItem("token"), location)
+        return await api.sendRequest('PATCH', `http://localhost:3000/locations/${location._id}`, token, location)
         .then(() => window.location.href = "/locations")
     }
     const addLocation = async () => {
-        return await api.sendRequest('POST', "http://localhost:3000/locations/", sessionStorage.getItem("token"), location)
+        return await api.sendRequest('POST', "http://localhost:3000/locations/", token, location)
         .then(() => window.location.href = "/locations")
     }
     const closePopup = () => {

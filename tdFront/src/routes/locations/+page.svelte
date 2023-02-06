@@ -1,22 +1,13 @@
 <script>
-	import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
 	import Header from "../../components/Header.svelte";
 	import Location from "../../components/Location.svelte";
-    import * as api from "../../api.js";
 
     export let data;
 
-    let locations = [];
-    let userRole;
+    const locations = data.locations;
+    const userRole = data.userRole;
+    const token = data.token;
 
-    onMount(async () => {
-        await api.sendRequest('GET', "http://localhost:3000/users/me", sessionStorage.getItem("token"))
-        .then(data => userRole = data.role).catch(() => goto("/login"))
-
-        await api.sendRequest("GET", "http://localhost:3000/locations", sessionStorage.getItem("token"))
-        .then(data => locations = data)
-    });
 </script>
 
 <body>
@@ -24,12 +15,12 @@
     <div class="after">
         {#if userRole == "admin"}
         <div class="location">
-            <Location location="{data.null_location}" create="{true}" role="{userRole}"> </Location>
+            <Location location="{data.null_location}" create="{true}" role="{userRole}" token="{token}"> </Location>
         </div>
         {/if}
         {#each locations as location (location._id)}
         <div class="location">
-            <Location location="{location}" create="{false}" role="{userRole}"></Location>
+            <Location location="{location}" create="{false}" role="{userRole}" token="{token}"></Location>
         </div>
         {/each}
     </div>

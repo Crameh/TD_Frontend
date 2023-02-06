@@ -8,12 +8,12 @@
         "password": ""
     };
     
-    const loginFunction = async () => {
+    /*const loginFunction = async () => {
         const response = await api.sendRequest('POST', "http://localhost:3000/users/login", "", user)
         if (response.jwt == undefined) errorLogin = true;
         sessionStorage.setItem('token', response.jwt)
         window.location.href = "/locations"
-    }
+    }*/
 
     
 </script>
@@ -28,7 +28,7 @@
         <div class="container">
             <h2> LOGIN </h2>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <form class="form" on:click={loginFunction}>
+            <form class="form" method="POST">
                 <input type="text" id="username" name="username" placeholder="username" bind:value={user.username} required>
                 <input type="password" id="password" name="password" placeholder="password" bind:value={user.password} required>               
                 <input type="submit" class="submit" value="LOG IN"/>
