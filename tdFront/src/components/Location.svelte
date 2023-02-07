@@ -35,7 +35,12 @@
             {/if}
             {#if !create}
             <div class="card_bande">
+                {#if role == "admin"}
                 <h1 id="filmName">{location.filmName}</h1>
+                {/if}
+                {#if role == "user"}
+                <h1 id="filmName" class="titleUser" on:click={switchPopup}>{location.filmName}</h1>
+                {/if}
                     {#if role == "admin"}
                         <div class="actions">
                             <span class="edit material-symbols-outlined" on:click={switchPopup}> edit </span>
@@ -46,14 +51,14 @@
             <div class="infos">
                 <h3> Type : {location.filmType} </h3>
                 <h3> Director : {location.filmDirectorName} </h3>
-                <h3> Producer : {location.filmProducerName} </h3>
+                <h3> Location : {location.address} </h3>
                 <h3> Year : {location.year} </h3>
             </div>
             {/if}
         </div>
     </div>
     {#if pop}
-    <Popup location="{location}" pop="{pop}" add="{create}" token="{token}"></Popup>
+    <Popup location="{location}" pop="{pop}" add="{create}" token="{token}" role="{role}"></Popup>
     {/if}
 </body>
 
@@ -124,5 +129,8 @@
     }
     .card_bande .delete:hover{
         color: red;
+    }
+    .titleUser {
+        cursor: pointer;
     }
 </style>

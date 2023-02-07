@@ -30,6 +30,8 @@ export async function load({ cookies }) {
     await api.sendRequest('GET', "http://localhost:3000/users/me", token)
     .then(data => userRole = data.role)
 
+    if (userRole != "admin" && userRole != "user") throw redirect(307, "/login")
+
     await api.sendRequest("GET", "http://localhost:3000/locations", token)
     .then(data => locations = data)
 

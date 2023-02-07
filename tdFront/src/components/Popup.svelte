@@ -5,6 +5,7 @@
     export let pop;
     export let add;
     export let token;
+    export let role;
 
     const editLocation = async(id) =>{
         closePopup();
@@ -31,7 +32,8 @@
                 <div class="details_head">
                     <div class="case">
                         <span>Title : </span>
-                        <input name="title" bind:value={location.filmName} id="title">
+                        {#if role=="admin"}<input name="title" bind:value={location.filmName} id="title">{/if}
+                        {#if role=="user"}<span> {location.filmName}</span>{/if}
                     </div>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <h2 on:click={closePopup}> &#10060; </h2>
@@ -41,48 +43,58 @@
                     <div class="details_left">
                         <div class="case">
                             <span>Film Type :</span>
-                            <input name="filmType" bind:value={location.filmType} id="filmType">
+                            {#if role=="admin"}<input name="filmType" bind:value={location.filmType} id="filmType">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.filmType}</span>{/if}
                         </div>
                         <div class="case">
                             <span>Film Director :</span>
-                            <input name="filmDirectorName" bind:value={location.filmDirectorName} id="filmDirectorName">
+                            {#if role=="admin"}<input name="filmDirectorName" bind:value={location.filmDirectorName} id="filmDirectorName">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.filmDirectorName}</span>{/if}
                         </div>
                         <div class="case">
                             <span>Film Producer :</span>
-                            <input name="filmProducerName" bind:value={location.filmProducerName} id="filmProducerName">
+                            {#if role=="admin"}<input name="filmProducerName" bind:value={location.filmProducerName} id="filmProducerName">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.filmProducerName}</span>{/if}
                         </div>
                         <div class="case">
                             <span>Address :</span>
-                            <input name="address" bind:value={location.address} id="address">
+                            {#if role=="admin"}<input name="address" bind:value={location.address} id="address">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.address}</span>{/if}
                         </div>
                         <div class="case">
                             <span>District :</span>
-                            <input name="district" bind:value={location.district} id="district">
+                            {#if role=="admin"}<input name="district" bind:value={location.district} id="district">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.district}</span>{/if}
                         </div>
                     </div>
 
                     <div class="details_right">
                         <div class="case">
                             <span>Coordinates x :</span>
-                            <input name="geoX" bind:value={location.geolocation.coordinates[0]} id="geoX">
+                            {#if role=="admin"}<input name="geoX" bind:value={location.geolocation.coordinates[0]} id="geoX">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.geolocation.coordinates[0]}</span>{/if}
                         </div>
                         <div class="case">
                             <span>Coordinates y :</span>
-                            <input name="geoY" bind:value={location.geolocation.coordinates[1]} id="geoY">
+                            {#if role=="admin"}<input name="geoY" bind:value={location.geolocation.coordinates[1]} id="geoY">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.geolocation.coordinates[1]}</span>{/if}
                         </div>
                         <div class="case">
                             <span>Year :</span>
-                            <input name="year" bind:value={location.year} id="year">
+                            {#if role=="admin"}<input name="year" bind:value={location.year} id="year">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.year}</span>{/if}
                         </div>
                         <div class="case">
                             <span>startDate :</span>
-                            <input name="startDate" bind:value={location.startDate} id="startDate">
+                            {#if role=="admin"}<input name="startDate" bind:value={location.startDate} id="startDate">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.startDate}</span>{/if}
                         </div>
                         <div class="case">
                             <span>endDate :</span>
-                            <input name="endDate" bind:value={location.endDate} id="endDate">
+                            {#if role=="admin"}<input name="endDate" bind:value={location.endDate} id="endDate">{/if}
+                            {#if role=="user"}<span class="spanInfos">{location.endDate}</span>{/if}
                         </div>
-
+                        {#if role == "admin"}
                         <div class="details_actions">
                             {#if add}
                             <button type="button" on:click={addLocation}> OK </button>
@@ -91,7 +103,7 @@
                             <button type="button" on:click={editLocation}> OK </button>
                             {/if}
                         </div>
-
+                        {/if}
                     </div>   
 
                 </div>  
@@ -105,6 +117,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@500&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@200;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@200;500&family=Roboto:wght@100&display=swap');
     .popup {
         top : 70px;
         left: 0;
@@ -188,5 +201,9 @@
     }
     .details_actions button:hover{
         cursor: pointer;
+    }
+    .spanInfos, .case input {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
     }
 </style>
