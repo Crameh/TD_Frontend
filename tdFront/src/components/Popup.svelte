@@ -13,6 +13,7 @@
         .then(() => window.location.href = "/locations")
     }
     const addLocation = async () => {
+        closePopup();
         return await api.sendRequest('POST', "https://webapp-back.onrender.com/locations/", token, location)
         .then(() => window.location.href = "/locations")
     }
