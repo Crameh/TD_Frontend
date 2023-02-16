@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@sveltejs/adapter-vercel": "^2.0.2"
+  },
+  "dependencies": {
+    "vite": "^4.1.1"
+  }
+}
