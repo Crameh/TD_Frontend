@@ -7,5 +7,10 @@ export const sendRequest = async (_method, _url, _token, _body = {}) => {
         }
     }
     if (JSON.stringify(_body) != "{}") request.body = JSON.stringify(_body);
-    return await fetch(_url, request).then(response => response.json());
+    const response = await fetch(_url, request);
+    try {
+        return await response.json();
+    } catch (e) {
+        console.log(e)
+    }
 }
