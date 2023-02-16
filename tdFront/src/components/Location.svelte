@@ -10,7 +10,7 @@
     let pop = false;
     
     const deleteLocation = async () => {
-        return await api.sendRequest('DELETE', `http://localhost:3000/locations/${location._id}`, token)
+        return await api.sendRequest('DELETE', `https://webapp-back.onrender.com/locations/${location._id}`, token)
         .then(() => window.location.href = "/locations")
     }
     const switchPopup = () => {

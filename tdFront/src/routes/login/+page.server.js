@@ -18,7 +18,7 @@ export const actions = {
         
         if (!username || !password) throw redirect(304, "/login")
 
-        const response = await api.sendRequest('POST', "http://localhost:3000/users/login", "", {
+        const response = await api.sendRequest('POST', "https://webapp-back.onrender.com/users/login", "", {
             'username': username,
             'password': password
         }).catch(() => {

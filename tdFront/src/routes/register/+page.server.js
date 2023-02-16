@@ -17,7 +17,7 @@ export const actions = {
         
         if (!username || !password) throw redirect(304, "/register")
 
-        const response = await api.sendRequest('POST', "http://localhost:3000/users/register", "", {
+        const response = await api.sendRequest('POST', "https://webapp-back.onrender.com/users/register", "", {
             'username': username,
             'password': password
         }).catch(() => {

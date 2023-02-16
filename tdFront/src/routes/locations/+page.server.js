@@ -27,12 +27,12 @@ export async function load({ cookies }) {
 
     if (!token || token == "null") throw redirect(307, "/login")
 
-    await api.sendRequest('GET', "http://localhost:3000/users/me", token)
+    await api.sendRequest('GET', "https://webapp-back.onrender.com/users/me", token)
     .then(data => userRole = data.role)
 
     if (userRole != "admin" && userRole != "user") throw redirect(307, "/login")
 
-    await api.sendRequest("GET", "http://localhost:3000/locations", token)
+    await api.sendRequest("GET", "https://webapp-back.onrender.com/locations", token)
     .then(data => locations = data)
 
     return { null_location, locations, userRole, token };

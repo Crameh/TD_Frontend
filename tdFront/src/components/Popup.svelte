@@ -9,11 +9,11 @@
 
     const editLocation = async(id) =>{
         closePopup();
-        return await api.sendRequest('PATCH', `http://localhost:3000/locations/${location._id}`, token, location)
+        return await api.sendRequest('PATCH', `https://webapp-back.onrender.com/locations/${location._id}`, token, location)
         .then(() => window.location.href = "/locations")
     }
     const addLocation = async () => {
-        return await api.sendRequest('POST', "http://localhost:3000/locations/", token, location)
+        return await api.sendRequest('POST', "https://webapp-back.onrender.com/locations/", token, location)
         .then(() => window.location.href = "/locations")
     }
     const closePopup = () => {
