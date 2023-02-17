@@ -10,8 +10,9 @@
         "password": ""
     };
     
+    
     const registerFunction = async () => {
-        const response = await api.sendRequest('POST', "http://localhost:3000/users/register", "", user);
+        const response = await api.sendRequest('POST', "https://webapp-back.onrender.com/users/register", "", user);
         response.username == user.username ? window.location.href = "/login" : errorRegister = true;
     }
 </script>
